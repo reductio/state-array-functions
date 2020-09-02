@@ -2,7 +2,7 @@ import { mapStateArray, filterStateArray } from "../src/implementation";
 
 describe("Map/Filter", () => {
   let input: Array<number | object>;
-  let parameterTestFunction: <T>(x: T) => T;
+  let parameterTestFunction: jest.Mock<any, any>;
 
   beforeEach(() => {
     input = [1, 2, { a: 42 }, 4, 5];
@@ -32,7 +32,7 @@ describe("Map/Filter", () => {
 
     test("Custom equality function", () => {
       // prepare
-      const equalityFunc = (a, b) => {
+      const equalityFunc = (a: any, b: any) => {
         if (typeof a === "object" && typeof b === "object") {
           const aEntries = Object.entries(a);
           return (
@@ -44,7 +44,7 @@ describe("Map/Filter", () => {
         return a === b;
       };
 
-      const mappingFunc = (e) => (typeof e === "object" ? { ...e } : e);
+      const mappingFunc = (e: any) => (typeof e === "object" ? { ...e } : e);
 
       // act
       const mapped_without_equalityFunc = mapStateArray(input, mappingFunc);

@@ -1,6 +1,6 @@
 {
   "name": "state-array-functions",
-  "version": "0.0.2",
+  "version": "0.9.0",
   "description": "Filter and map functions for arrays used in states where objects/arrays are not altered but replaced when changed, e.g. redux states.",
   "main": "index.js",
   "scripts": {

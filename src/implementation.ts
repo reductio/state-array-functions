@@ -1,9 +1,11 @@
 const defaultEqualityFunction = (a: any, b: any) => a === b;
 
+export type EqualityFunction<T, S> = (value1: T, value2: S) => any;
+
 export function mapStateArray<T, S>(
   array: T[],
   func: (value: T, index: number, array: T[]) => S,
-  equalityFunc: (value1: T, value2: S) => any = defaultEqualityFunction
+  equalityFunc: EqualityFunction<T, S> = defaultEqualityFunction
 ): S[] | T[] {
   let changed: boolean = false;
   const newArray: S[] = array.map((value: T, ...args) => {
